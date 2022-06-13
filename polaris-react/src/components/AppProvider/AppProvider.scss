@@ -1,8 +1,11 @@
+/* stylelint-disable scss/at-import-partial-extension-blacklist */
+
 // These are global styles that must be included by all apps that consume
 // polaris-react. As the AppProvider is a required wrapper when using polaris
 // components then this css shall always be present.
 
 @import '../../styles/common';
+@import '../../../../node_modules/@shopify/polaris-tokens/dist/scss/styles.scss';
 
 :root {
   --polaris-version-number: '{{POLARIS_VERSION}}';
