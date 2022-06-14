@@ -9,10 +9,6 @@ import {typography as typographyTokens} from './token-groups/typography';
 import {zIndex as zIndexTokens} from './token-groups/zIndex';
 import {tokensToRems} from './utilities';
 
-/**
- * Values to convert to CSS custom properties.
- * @example {background: '#000'} // --p-background: #000;
- */
 export interface TokenProperties {
   description?: string;
   value: string;
@@ -21,6 +17,7 @@ export interface TokenProperties {
 export interface TokenGroup {
   [token: string]: TokenProperties;
 }
+
 export interface Tokens {
   breakpoints: TokenGroup;
   colors: TokenGroup;
