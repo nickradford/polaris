@@ -1,4 +1,5 @@
 import type {Tokens, TokenGroup} from './tokens';
+import type {MetadataTokenGroup} from './metadata';
 
 const BASE_FONT_SIZE = 16;
 
@@ -10,7 +11,9 @@ function rem(value: string) {
   );
 }
 
-export function tokensToRems(tokenGroup: TokenGroup): TokenGroup {
+export function tokensToRems(
+  tokenGroup: MetadataTokenGroup,
+): MetadataTokenGroup {
   return Object.fromEntries(
     Object.entries(tokenGroup).map(([token, values]) => [
       token,
@@ -28,7 +31,7 @@ export function createVar(token: string) {
  *
  * Result: ['p-keyframes-fade-in', 'p-keyframes-spin', etc...]
  */
-export function getKeyframeNames(motionTokenGroup: TokenGroup) {
+export function getKeyframeNames(motionTokenGroup: MetadataTokenGroup) {
   return Object.keys(motionTokenGroup)
     .map((token) => (token.startsWith('keyframes') ? `p-${token}` : null))
     .filter(Boolean);
@@ -45,4 +48,10 @@ export function getCustomPropertyNames(tokens: Tokens) {
       Object.keys(tokenGroup).map((token) => createVar(token)),
     )
     .flat();
+}
+
+export function removeMetadata(tokenGroup: MetadataTokenGroup): TokenGroup {
+  return Object.fromEntries(
+    Object.entries(tokenGroup).map(([token, values]) => [token, values.value]),
+  );
 }

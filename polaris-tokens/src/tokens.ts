@@ -7,15 +7,10 @@ import {shape as shapeTokens} from './token-groups/shape';
 import {spacing as spacingTokens} from './token-groups/spacing';
 import {typography as typographyTokens} from './token-groups/typography';
 import {zIndex as zIndexTokens} from './token-groups/zIndex';
-import {tokensToRems} from './utilities';
-
-export interface TokenProperties {
-  description?: string;
-  value: string;
-}
+import {removeMetadata, tokensToRems} from './utilities';
 
 export interface TokenGroup {
-  [token: string]: TokenProperties;
+  [token: string]: string;
 }
 
 export interface Tokens {
@@ -30,15 +25,19 @@ export interface Tokens {
   zIndex: TokenGroup;
 }
 
-export const breakpoints: TokenGroup = tokensToRems(breakpointsTokens);
-export const colors: TokenGroup = colorsTokens;
-export const depth: TokenGroup = depthTokens;
-export const legacy: TokenGroup = tokensToRems(legacyTokens);
-export const motion: TokenGroup = tokensToRems(motionTokens);
-export const shape: TokenGroup = tokensToRems(shapeTokens);
-export const spacing: TokenGroup = tokensToRems(spacingTokens);
-export const typography: TokenGroup = tokensToRems(typographyTokens);
-export const zIndex: TokenGroup = zIndexTokens;
+export const breakpoints: TokenGroup = removeMetadata(
+  tokensToRems(breakpointsTokens),
+);
+export const colors: TokenGroup = removeMetadata(colorsTokens);
+export const depth: TokenGroup = removeMetadata(depthTokens);
+export const legacy: TokenGroup = removeMetadata(tokensToRems(legacyTokens));
+export const motion: TokenGroup = removeMetadata(tokensToRems(motionTokens));
+export const shape: TokenGroup = removeMetadata(tokensToRems(shapeTokens));
+export const spacing: TokenGroup = removeMetadata(tokensToRems(spacingTokens));
+export const typography: TokenGroup = removeMetadata(
+  tokensToRems(typographyTokens),
+);
+export const zIndex: TokenGroup = removeMetadata(zIndexTokens);
 
 export const tokens: Tokens = {
   breakpoints,
